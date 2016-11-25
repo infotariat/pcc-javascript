@@ -1,0 +1,432 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Pcc-javascript by infotariat</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-dark.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Pcc-javascript</h1>
+        <p>My JavaScript course materials</p>
+        <p class="view"><a href="https://github.com/infotariat/pcc-javascript">View the Project on GitHub <small>infotariat/pcc-javascript</small></a></p>
+        <ul>
+          <li><a href="https://github.com/infotariat/pcc-javascript/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/infotariat/pcc-javascript/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/infotariat/pcc-javascript">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="cis-133w-javascript-week-4" class="anchor" href="#cis-133w-javascript-week-4" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>CIS 133W JavaScript, Week 4</h1>
+
+<p><em>There really is not much to this weeks lesson. If you have ever programmed before (in any language), you'll already be familiar with the "If...Then" statement. Granted, javascript uses it's own "C Style" syntax, but none the less, it is still pretty straight forward.</em></p>
+
+<h3>
+<a id="conditional-statements" class="anchor" href="#conditional-statements" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Conditional statements</h3>
+
+<p>The typical javascript if-then statement looks like this:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">if</span> (someCondition <span class="pl-k">==</span> <span class="pl-c1">true</span>) {
+    <span class="pl-c">// Execute a code block between the curly braces</span>
+    <span class="pl-c">// This could be one to thousands of lines of code</span>
+} <span class="pl-k">else</span> <span class="pl-k">if</span> (someOtherCondition <span class="pl-k">==</span> <span class="pl-c1">true</span>) {
+    <span class="pl-c">// Execute some other block</span>
+} <span class="pl-k">else</span> {
+    <span class="pl-c">// Execute yet another thing.</span>
+    <span class="pl-c">// This will likely be a default, or "success" option of some kind, at</span>
+    <span class="pl-c">// least in a validation context.</span>
+}</pre></div>
+
+<p>The condition expression can be very simple or very complex, so long as it
+resolves to a true or false value. You can have as many <strong>"else if"</strong> statements as you want. That means you can potentially check for dozens or even hundreds of possible conditions.</p>
+
+<p>Here's an example:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> annualEarnings <span class="pl-k">=</span> <span class="pl-c1">document</span>.<span class="pl-c1">getElementById</span>(<span class="pl-s"><span class="pl-pds">"</span>txtNetEarnings<span class="pl-pds">"</span></span>);
+
+<span class="pl-k">if</span> (<span class="pl-c1">parseFloat</span>(annualEarnings) <span class="pl-k">&gt;=</span> <span class="pl-c1">250000</span>) {
+    taxRate <span class="pl-k">=</span> <span class="pl-c1">0.50</span>;
+} <span class="pl-k">else</span> <span class="pl-k">if</span> (<span class="pl-c1">parseFloat</span>(annualEarnings) <span class="pl-k">&gt;=</span> <span class="pl-c1">100000</span>) {
+    taxRate <span class="pl-k">=</span> <span class="pl-c1">0.35</span>;
+} <span class="pl-k">else</span> {
+    taxRate <span class="pl-k">=</span> <span class="pl-c1">0.05</span>;
+}</pre></div>
+
+<h3>
+<a id="case-sensitivity" class="anchor" href="#case-sensitivity" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Case sensitivity</h3>
+
+<p>One thing needs to be made totally clear is that when performing logical comparisons you need to be aware of case sensitivity issues. The letter <strong>"A"</strong> does not equal the letter <strong>"a"</strong> (at least not as far as the computer is concerned).</p>
+
+<p>If you wish to compare textual (string) data and have it be Case Insensitive, then you simply convert each item compared to a like case (Both to upper Case for Example).</p>
+
+<p>You can do this using the string object's "toUpperCase()" method or the string object's "toLowerCase()" method.</p>
+
+<p>Let's look at an example. First we see straight-up comparison:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> x <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>A<span class="pl-pds">"</span></span>;
+<span class="pl-k">var</span> y <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>a<span class="pl-pds">"</span></span>;
+<span class="pl-k">var</span> z;
+
+z <span class="pl-k">=</span> (x <span class="pl-k">=</span> y); <span class="pl-c">// will result in z being FALSE</span></pre></div>
+
+<p>And then using the string method:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> x <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>A<span class="pl-pds">"</span></span>;
+<span class="pl-k">var</span> y <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>a<span class="pl-pds">"</span></span>;
+<span class="pl-k">var</span> z;
+
+z <span class="pl-k">=</span> (<span class="pl-smi">x</span>.<span class="pl-c1">toUpperCase</span>() <span class="pl-k">=</span> <span class="pl-smi">y</span>.<span class="pl-c1">toUpperCase</span>()); <span class="pl-c">// will result in z being TRUE</span></pre></div>
+
+<h3>
+<a id="data-types-and-casting" class="anchor" href="#data-types-and-casting" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Data types and casting</h3>
+
+<p>Just as case sensitivity may cause issues in your logical comparisons so to can data type issues. For example, the number "1" is NOT the same as the number "1.000" (At least not as far as your computer is concerned). Because of this, it is typically wise to convert or "Cast" numeric data to like datatypes prior to or during comparison operations.</p>
+
+<p>An example, with straight comparison:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> x <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>1<span class="pl-pds">"</span></span>;
+<span class="pl-k">var</span> y <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>1.000<span class="pl-pds">"</span></span>;
+<span class="pl-k">var</span> z;
+
+z <span class="pl-k">=</span> (x <span class="pl-k">=</span> y); <span class="pl-c">// MAY result in z being FALSE (depending on browsers, circumstances, etc)</span></pre></div>
+
+<p>Now with type casting, thanks to the <strong>parseInt()</strong> function:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> x <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>1<span class="pl-pds">"</span></span>;
+<span class="pl-k">var</span> y <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>1.000<span class="pl-pds">"</span></span>;
+<span class="pl-k">var</span> z;
+
+z <span class="pl-k">=</span> (<span class="pl-c1">parseInt</span>(x) <span class="pl-k">=</span> <span class="pl-c1">parseInt</span>(y)); <span class="pl-c">// results in z being TRUE</span></pre></div>
+
+<p>Similarly, you may get bizarre results with mathematical operations if you dont carefully parse values to the correct data type.</p>
+
+<p>Consider this example:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> theAge <span class="pl-k">=</span> <span class="pl-c1">document</span>.<span class="pl-c1">getElementById</span>(<span class="pl-s"><span class="pl-pds">"</span>txtAge<span class="pl-pds">"</span></span>).<span class="pl-c1">value</span>;
+<span class="pl-k">var</span> yearsToRetirement <span class="pl-k">=</span> <span class="pl-c1">document</span>.<span class="pl-c1">getElementById</span>(<span class="pl-s"><span class="pl-pds">"</span>txtYearsToRetire<span class="pl-pds">"</span></span>).<span class="pl-c1">value</span>;
+
+<span class="pl-k">var</span> ageAtRetirement <span class="pl-k">=</span> theAge <span class="pl-k">+</span> yearsToRetirement;</pre></div>
+
+<p>If above, the user entered age 40 and YearsToRetirement of 25, you would expect the answer to be 65. However, in this example, javascript doesn't realize that you are wanting these values handled numerically. Instead of doing numeric adding, it will do TEXTUAL Adding so the result would be:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c1">4025</span></pre></div>
+
+<p>NOT what we were looking for.</p>
+
+<p>To fix the issue, we would have to more carefully cast our input values to integers when doing the math:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> ageAtRetirement <span class="pl-k">=</span> <span class="pl-c1">parseInt</span>(theAge) <span class="pl-k">+</span> <span class="pl-c1">parseInt</span>(yearsToRetirement);</pre></div>
+
+<p>You can also parse numeric values to a floating point number if you want to honor decimal values. To do this, you use the <strong>parseFloat()</strong> function.</p>
+
+<p>An example:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> salary <span class="pl-k">=</span> <span class="pl-c1">document</span>.<span class="pl-c1">getElementById</span>(<span class="pl-s"><span class="pl-pds">"</span>txtSalary<span class="pl-pds">"</span></span>);
+<span class="pl-k">var</span> taxRate <span class="pl-k">=</span> <span class="pl-c1">document</span>.<span class="pl-c1">getElementById</span>(<span class="pl-s"><span class="pl-pds">"</span>txtTaxRate<span class="pl-pds">"</span></span>);
+
+<span class="pl-k">var</span> taxOwed <span class="pl-k">=</span> <span class="pl-c1">parseFloat</span>(salary) <span class="pl-k">*</span> <span class="pl-c1">parseFloat</span>(taxRate);
+
+<span class="pl-c1">document</span>.<span class="pl-c1">getElementById</span>(<span class="pl-s"><span class="pl-pds">"</span>txtTaxOwed<span class="pl-pds">"</span></span>).<span class="pl-c1">value</span> <span class="pl-k">=</span> <span class="pl-smi">taxOwed</span>.<span class="pl-c1">toString</span>();</pre></div>
+
+<p>As has been demonstrated above, you can also cast numeric values to strings using the <strong>toString()</strong> method.</p>
+
+<p>For example:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> x;
+x <span class="pl-k">=</span> <span class="pl-c1">123.456</span>;
+<span class="pl-en">alert</span>(<span class="pl-smi">x</span>.<span class="pl-c1">toString</span>());</pre></div>
+
+<p>Remember, that <em>technically</em>, the <strong>alert()</strong> function requires a string argument (not a number). Even though, we may not necessarily <em>have</em> to cast the variable <strong>x</strong> to a string to display it via a javascript alert(), it is a better practice to do so as in the above example.</p>
+
+<h3>
+<a id="validating-input" class="anchor" href="#validating-input" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Validating input</h3>
+
+<p>It is very important to get into the habit of validating ALL user input. There are really two significant risks if you don't:</p>
+
+<ol>
+<li>Legitimate Users will enter bizarre\unexpected values and blow your browser based application sky high (over flow errors, divide by zero errors, special characters, etc etc etc).</li>
+<li>Hackers will enter malicious content into your form fields. (SQL Injection Attacks OR Javascript entered into Form fields and posted to your server. This can dump cookie values, header data, etc.)</li>
+</ol>
+
+<p>One thing to check for in form post data is for any HTML tags...For example, if a user entered ANY "&amp;lt" or "&amp;gt" characters in a form field, I would consider rejecting the data because that looks like a potential HTML or Javascript Block.</p>
+
+<p>If you expect the user to enter numeric data, you can use the "Is Not A Number" Function, <strong>isNaN()</strong> to determine if the data value is Not A Number (returns true or false).</p>
+
+<p>Example:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">if</span>(<span class="pl-c1">isNaN</span>(<span class="pl-c1">document</span>.<span class="pl-c1">forms</span>[<span class="pl-c1">0</span>].<span class="pl-c1">elements</span>[<span class="pl-c1">3</span>].<span class="pl-c1">value</span>)) {
+    <span class="pl-en">alert</span>(<span class="pl-s"><span class="pl-pds">"</span>Years of Service Must Be Numeric<span class="pl-pds">"</span></span>);
+}</pre></div>
+
+<h3>
+<a id="browser-sniffing" class="anchor" href="#browser-sniffing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Browser sniffing</h3>
+
+<p>One of the most common needs for you as a web developer will be the requirement to determine what browser your users are using. Due to differences in browsers regarding their use of javascript, you may need to write logic to branch in different directions based on the browser type, version, and even Operating System.</p>
+
+<h3>
+<a id="the-navigator-object" class="anchor" href="#the-navigator-object" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>The navigator object</h3>
+
+<p>The <strong>navigator</strong> object exists in javascript for this very purpose. This object contains various properties that you can read to determine what browser is in use. The properties of the <strong>navigator</strong> object that you will likely need at some point or another are:</p>
+
+<ul>
+<li><strong>userAgent</strong></li>
+<li><strong>appName</strong></li>
+<li><strong>appVersion</strong></li>
+<li><strong>javaEnabled</strong></li>
+<li><strong>platform</strong></li>
+</ul>
+
+<p>To retrieve those values, we simply access the <strong>navigator</strong> object:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c1">document</span>.<span class="pl-c1">write</span>(<span class="pl-s"><span class="pl-pds">"</span>appName: <span class="pl-pds">"</span></span> <span class="pl-k">+</span> <span class="pl-c1">navigator</span>.<span class="pl-c1">appName</span>;);</pre></div>
+
+<p>The <strong>appName</strong> property will return a large string (Usually). For Netscape, the property will return "Netscape" for IE, the property will return "Microsoft Internet Explorer". So...we can test which browser using the following code:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> isNS <span class="pl-k">=</span> <span class="pl-c1">false</span>;
+<span class="pl-k">var</span> isIE <span class="pl-k">=</span> <span class="pl-c1">false</span>;
+<span class="pl-k">var</span> isUnknown <span class="pl-k">=</span> <span class="pl-c1">false</span>;
+
+<span class="pl-k">var</span> sAppName;
+sAppName <span class="pl-k">=</span> <span class="pl-c1">navigator</span>.<span class="pl-c1">appName</span>;
+
+<span class="pl-k">if</span> (<span class="pl-smi">sAppName</span>.<span class="pl-c1">indexOf</span>(<span class="pl-s"><span class="pl-pds">"</span>Netscape<span class="pl-pds">"</span></span>) <span class="pl-k">!=</span> <span class="pl-k">-</span><span class="pl-c1">1</span>) {
+    isNS <span class="pl-k">=</span> <span class="pl-c1">true</span>;
+} <span class="pl-k">else</span> <span class="pl-k">if</span> (<span class="pl-smi">sAppName</span>.<span class="pl-c1">indexOf</span>(<span class="pl-s"><span class="pl-pds">"</span>Microsoft<span class="pl-pds">"</span></span>) <span class="pl-k">!=</span> <span class="pl-k">-</span><span class="pl-c1">1</span>) {
+    isIE <span class="pl-k">=</span> <span class="pl-c1">true</span>;
+} <span class="pl-k">else</span> {
+    isUnknown <span class="pl-k">=</span> <span class="pl-c1">true</span>;
+}</pre></div>
+
+<h3>
+<a id="limitations-of-the-appname-property" class="anchor" href="#limitations-of-the-appname-property" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Limitations of the appName property</h3>
+
+<p>One problem with the <strong>appName</strong> attribute is that it is very inconsistent from browser to browser. For example, for a large percentage of the browsers out there, the appName property simply returns "Mozilla".</p>
+
+<p>Why is this? you may ask. Well...the reason is simple. Most browsers are derived from the Original Mozilla browser code base and therefore they really ARE Mozilla (to an extent). Because of this, the wide use of <strong>appName</strong> for anything meaningful is not really seen in the real world.</p>
+
+<p>The appVersion property also returns a large string (Usually). However, the numeric version value is always the first piece of the text, so we can still easily test which browser version using the following code:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> is4 <span class="pl-k">=</span> <span class="pl-c1">false</span>;
+<span class="pl-k">var</span> is5orAbove <span class="pl-k">=</span> <span class="pl-c1">false</span>;
+<span class="pl-k">var</span> is3orBelow <span class="pl-k">=</span> <span class="pl-c1">false</span>;
+
+<span class="pl-k">var</span> iAppVersion;
+
+iAppVersion <span class="pl-k">=</span> <span class="pl-c1">parseInt</span>(<span class="pl-c1">navigator</span>.<span class="pl-c1">appVersion</span>);
+
+<span class="pl-k">if</span> (iAppVersion <span class="pl-k">&gt;=</span> <span class="pl-c1">5</span>) {
+    is5orAbove <span class="pl-k">=</span> <span class="pl-c1">true</span>;
+} <span class="pl-k">else</span> <span class="pl-k">if</span> (iAppVersion <span class="pl-k">=</span> <span class="pl-c1">4</span>) {
+    is4 <span class="pl-k">=</span> <span class="pl-c1">true</span>;
+} <span class="pl-k">else</span> {
+    is3orBelow <span class="pl-k">=</span> <span class="pl-c1">true</span>;
+}</pre></div>
+
+<h3>
+<a id="limitations-of-the-appversion-property" class="anchor" href="#limitations-of-the-appversion-property" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Limitations of the appVersion property</h3>
+
+<p>Hmmmm. Of course, we also see that <strong>appVersion</strong> has MAJOR limitations as well. For example, with IE browsers the <strong>appVersion</strong> always returns "4" (even for IE 6 and IE 7).</p>
+
+<p>The reason for this is also simple....the <strong>appVersion</strong> basically answers the question <em>"What Browser FAMILY are you?"</em></p>
+
+<p>Browser family indicates what basic set of features does the browser support. IE4 was the first IE browser to support DHTML and Cascading Style Sheets (CSS). <em>SO....when IE reports that it is IE4. It's not REALLY reporting it's "VERSION", it's really reporting it's FAMILY for basic browser support.</em> Yes this is very misleading.</p>
+
+<p>Again, like <strong>appName</strong>, the version number is not generally used in real world applications.</p>
+
+<h3>
+<a id="the-useragent" class="anchor" href="#the-useragent" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>The userAgent</h3>
+
+<p>The most useful piece of browser info is the <strong>userAgent</strong>. Although the output of this Navigator attribute is often cryptic, if you look at the output, you will see that you can <em>always</em> glean the <em>correct</em> Browser name <em>and</em> Version from the text. The text returned by this property is <em>always</em> unique from browser to browser so all you have to do is learn the specific text formats for each browser in order to parse the strings and glean the accurate browser name and version.</p>
+
+<h3>
+<a id="string-parsing" class="anchor" href="#string-parsing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>String parsing</h3>
+
+<p>In order to glean the browser info from <strong>userAgent</strong> string, you will need to use the <strong>indexOf()</strong> javascript function to parse out name and version info.</p>
+
+<h3>
+<a id="detecting-cookie-support" class="anchor" href="#detecting-cookie-support" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Detecting cookie support</h3>
+
+<p>Cookies are little pieces of data that browser applications can store on the client (End user) machine. These little data items are managed by the browser, and are standard Internet Protocol.</p>
+
+<p>Cookie Values are used to <strong>persist data</strong> from page to page or between browser sessions. For example, to remember you as a past visitor, and to remember what you bought or looked at the last time you visited our site (Amazon.com Recommendations for example).</p>
+
+<p>You will likely need the ability to both read and write cookie values via javascript. To do this, you first need to determine if the browser supports cookies.</p>
+
+<p>With Newer browsers (IE4+ and Netscape6+), you can determine this using the <strong>navigator</strong> object <strong>cookieEnabled</strong> property.</p>
+
+<p>Example:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">if</span> (<span class="pl-c1">navigator</span>.<span class="pl-c1">cookieEnabled</span>) {
+    <span class="pl-en">alert</span>(<span class="pl-s"><span class="pl-pds">"</span>Your Browser Supports Cookies<span class="pl-pds">"</span></span>);
+}</pre></div>
+
+<h3>
+<a id="sniffing-cookie-support-via-feature-detection" class="anchor" href="#sniffing-cookie-support-via-feature-detection" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Sniffing cookie support via "feature detection"</h3>
+
+<p>So what happens if you need to detect if a browser supports cookies, but that browser does not provide the cookiesEnabled member? The answer is "Feature Detection".</p>
+
+<p>Feature detection is a general technique in which you TEST to see if a feature works by trying it. If it works, the feature is supported. If it doesn't work, then obviously, the feature is NOT supported.</p>
+
+<p>For example, for older browsers that do not provide the <strong>cookiesEnabled</strong> attribute, what you have to do is fire code that writes a cookie value ("TestCookie") for example, then you immediately attempt to read the value of that cookie back. If the value you wrote is read back, then you know the browser supports cookies.</p>
+
+<h3>
+<a id="reading-and-writing-cookies" class="anchor" href="#reading-and-writing-cookies" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Reading and writing cookies</h3>
+
+<p>With javascript, you will definitely need, at times, to read and write cookie values. In order to read and write cookie values, you need to know the Name of the cookie.</p>
+
+<p><strong>To write cookies, you specify the cookie name, the expiration date, the value, and a few other optional parameters (Path, Domain, Secure).</strong></p>
+
+<p>If you don't specify an expiration date, then the cookie is "Non-Persistent", which means that the cookie is only available as long as the browser is open. When the browser is closed, the cookie is NOT written to disk. IF the expiration date is specified, then the cookie is written to disk until the expiration date and the cookie value will "Persist" across browser sessions.</p>
+
+<p>As an example, consider this code which creates a non-persistent cookie named "UserID",
+with a value of "Gjackson":</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c1">document</span>.<span class="pl-c1">cookie</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>UserID=Gjackson<span class="pl-pds">"</span></span>;</pre></div>
+
+<p>This example creates a persistent cookie named "HasBeenSpammed", with a value of "TRUE", and an expiration date of 7 days from the current date:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> cookieExpirationDate <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Date</span>();
+<span class="pl-smi">cookieExpirationDate</span>.<span class="pl-c1">setDate</span>(<span class="pl-smi">cookieExpirationDate</span>.<span class="pl-c1">getDate</span>() <span class="pl-k">+</span> <span class="pl-c1">7</span>);
+<span class="pl-c1">document</span>.<span class="pl-c1">cookie</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>Test=CookieVIL;Expires=<span class="pl-pds">"</span></span> <span class="pl-k">+</span> <span class="pl-smi">cookieExpirationDate</span>.<span class="pl-c1">toString</span>() <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">"</span>;<span class="pl-pds">"</span></span></pre></div>
+
+<p>Reading a cookie is a little more difficult. The only thing we can do via javascript, is use the <strong>document.cookie</strong> property. This property returns ALL Cookies for the given page/scope in a semi-colon delimited list. We then must parse the name value pairs out of the content to find our cookie's individual cookie value (Similarly to how we parsed CGI Parameters out of the Query String in earlier examples).</p>
+
+<p>A typical cookie string might look something like this (notice the ";" between each cookie):</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// 'returnGuest=1;userID=gjackson;LoggedIn=True;HasBeenSpammed=true;sessionid=1AFC0034B1003FAA0E'</span></pre></div>
+
+<p>Here's an example that reads the value of a cookie named "UserID":</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> cookieValue <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>;
+<span class="pl-k">var</span> myCookie <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>;
+<span class="pl-k">var</span> cookieName <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>UserID<span class="pl-pds">"</span></span>;
+
+<span class="pl-k">var</span> ind;
+<span class="pl-k">var</span> ind2;
+
+myCookie <span class="pl-k">=</span> <span class="pl-c1">document</span>.<span class="pl-c1">cookie</span>;
+ind <span class="pl-k">=</span> <span class="pl-smi">myCookie</span>.<span class="pl-c1">indexOf</span>(cookieName);
+
+<span class="pl-k">if</span> (ind <span class="pl-k">==</span> <span class="pl-k">-</span><span class="pl-c1">1</span>) {
+    cookieValue <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>N/A<span class="pl-pds">"</span></span>;
+} <span class="pl-k">else</span> {
+    <span class="pl-c">// Find the first semicolon AFTER the beginning of this cookie.</span>
+    <span class="pl-c">// The semicolon indicates the start of the NEXT cookie.</span>
+    ind2 <span class="pl-k">=</span> <span class="pl-smi">myCookie</span>.<span class="pl-c1">indexOf</span>(<span class="pl-s"><span class="pl-pds">"</span>;<span class="pl-pds">"</span></span>, ind);
+    <span class="pl-k">if</span> (ind2 <span class="pl-k">==</span> <span class="pl-k">-</span><span class="pl-c1">1</span>) {
+        ind2 <span class="pl-k">=</span> <span class="pl-smi">myCookie</span>.<span class="pl-c1">length</span>;
+    }
+    cookieValue <span class="pl-k">=</span> <span class="pl-c1">unescape</span>(<span class="pl-smi">myCookie</span>.<span class="pl-c1">substring</span>(ind <span class="pl-k">+</span> <span class="pl-smi">cookieName</span>.<span class="pl-c1">length</span> <span class="pl-k">+</span> <span class="pl-c1">1</span>, ind2));
+}
+
+<span class="pl-en">alert</span>(<span class="pl-s"><span class="pl-pds">"</span>UserId=<span class="pl-pds">"</span></span> <span class="pl-k">+</span> cookieValue);</pre></div>
+
+<p>I don't fully expect you to understand the above code (string parsing is a bit of a pain). However, I do hope that you will use the above code and see if you can get it to work for you in reading and writing cookie values. This is a very important javascript technique, that is really bread and butter of client side scripting.</p>
+
+<h3>
+<a id="working-with-dates" class="anchor" href="#working-with-dates" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Working with dates</h3>
+
+<p>In javascript, we are given a <strong>Date</strong> object to work with date values in our script. The <strong>Date</strong> object provides a plethora of functionality for comparing two date values, parsing date values, adding to and subtracting from a date value, etc.</p>
+
+<p>To create a new date object with the current date and time, you simply instantiate a new date object with no parameters fed to the constructor. To create any new object instance, you simply use the <strong>new</strong> statement.</p>
+
+<p>Example:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> myDate <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Date</span>();
+<span class="pl-en">alert</span>(<span class="pl-s"><span class="pl-pds">"</span>The current date is: <span class="pl-pds">"</span></span> <span class="pl-k">+</span> <span class="pl-smi">myDate</span>.<span class="pl-c1">toString</span>());</pre></div>
+
+<p>To calculate a future date (or past date), you can simply add or subtract to\from a existing date object.</p>
+
+<p>This example calculates a date 15 days from now:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> cookieExpirationDate <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Date</span>();
+<span class="pl-smi">cookieExpirationDate</span>.<span class="pl-c1">setDate</span>(<span class="pl-smi">cookieExpirationDate</span>.<span class="pl-c1">getDate</span>() <span class="pl-k">+</span> <span class="pl-c1">15</span>);
+<span class="pl-c1">document</span>.<span class="pl-c1">cookie</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>MyCookie=Junk;expires=<span class="pl-pds">"</span></span> <span class="pl-k">+</span> <span class="pl-smi">cookieExpirationDate</span>.<span class="pl-c1">toString</span>();
+<span class="pl-en">alert</span>(<span class="pl-s"><span class="pl-pds">"</span>Cookie will expire on <span class="pl-pds">"</span></span> <span class="pl-k">+</span> <span class="pl-smi">cookieExpirationDate</span>.<span class="pl-c1">toString</span>());</pre></div>
+
+<h3>
+<a id="other-date-object-methods" class="anchor" href="#other-date-object-methods" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Other Date Object methods</h3>
+
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th align="center">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>getMinutes()</strong></td>
+<td align="center">Number of minutes value in the Date Object</td>
+</tr>
+<tr>
+<td><strong>getHours()</strong></td>
+<td align="center">Returns hours value of the Date Object</td>
+</tr>
+<tr>
+<td><strong>getDay()</strong></td>
+<td align="center">Returns day value of the Date Object</td>
+</tr>
+<tr>
+<td><strong>getMonth()</strong></td>
+<td align="center">Returns Month value of the Date Object</td>
+</tr>
+<tr>
+<td><strong>getFullYear()</strong></td>
+<td align="center">Returns 4 Digit Year value of the Date Object</td>
+</tr>
+</tbody>
+</table>
+
+<h3>
+<a id="deleting-a-cookie" class="anchor" href="#deleting-a-cookie" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Deleting a cookie</h3>
+
+<p>In order to delete a cookie, you simply write over the top of the existing cookie with a persistence date <em>older</em> than <strong>Now()</strong>.</p>
+
+<p>Example:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> cookieExpirationDate <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Date</span>();
+<span class="pl-smi">cookieExpirationDate</span>.<span class="pl-c1">setDate</span>(<span class="pl-smi">cookieExpirationDate</span>.<span class="pl-c1">getDate</span>() <span class="pl-k">-</span> <span class="pl-c1">7</span>);
+<span class="pl-c1">document</span>.<span class="pl-c1">cookie</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>Test=;Expires=<span class="pl-pds">"</span></span> <span class="pl-k">+</span> <span class="pl-smi">cookieExpirationDate</span>.<span class="pl-c1">toString</span>() <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">"</span>;<span class="pl-pds">"</span></span>;</pre></div>
+
+<h3>
+<a id="specifying-a-cookies-domain-and-path" class="anchor" href="#specifying-a-cookies-domain-and-path" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Specifying a cookie's domain and path</h3>
+
+<h5>
+<a id="cookie-path" class="anchor" href="#cookie-path" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Cookie Path</h5>
+
+<p>Cookies are, by default, available to all other files in the same directory the cookie was created in. To make a cookie available to <em>all files on the webserver</em> use the <strong>path</strong> statement, similar to:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c1">document</span>.<span class="pl-c1">cookie</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>javahere=yes;path=/<span class="pl-pds">"</span></span>;</pre></div>
+
+<p>To make the cookie available to <em>the javascript directory and all its subdirectories only</em> use a statement like:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c1">document</span>.<span class="pl-c1">cookie</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>javahere=yes; path=/javascript<span class="pl-pds">"</span></span>;</pre></div>
+
+<p>Cookies may have the same name with different values.</p>
+
+<h5>
+<a id="domain" class="anchor" href="#domain" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Domain</h5>
+
+<p>The <strong>domain</strong> parameter is used to set the domain the cookie is accessible to. A path can be set for your own domain only and the domain path must include at least two periods (<strong>.domain.com</strong>). It must match your server's domain name. Therefore <em>cookies are not a security risk since only the server that sets them can use them.</em></p>
+      </section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/infotariat">infotariat</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
